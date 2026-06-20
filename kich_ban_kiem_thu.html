@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,14 +13,16 @@
             margin: 0;
             padding: 30px;
         }
+
         .container {
             max-width: 1200px;
             margin: 0 auto;
             background: #ffffff;
             padding: 35px;
             border-radius: 8px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.06);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
         }
+
         h2 {
             color: #2c3e50;
             border-bottom: 2px solid #bdc3c7;
@@ -27,6 +30,7 @@
             margin-top: 0;
             font-size: 22px;
         }
+
         .requirement-box {
             background-color: #f1f2f6;
             border-left: 5px solid #7f8c8d;
@@ -35,34 +39,42 @@
             border-radius: 0 4px 4px 0;
             font-size: 14px;
         }
+
         .requirement-box ul {
             margin: 5px 0 0 0;
             padding-left: 20px;
         }
+
         table {
             width: 100%;
             border-collapse: collapse;
             margin-top: 15px;
         }
-        th, td {
+
+        th,
+        td {
             border: 1px solid #d2d7d9;
             padding: 12px 15px;
             text-align: left;
             font-size: 14px;
         }
+
         th {
             background-color: #34495e;
             color: #ffffff;
             font-weight: 600;
         }
+
         tr:nth-child(even) {
             background-color: #fdfdfd;
         }
+
         /* Chỉ TÔ ĐẬM chữ cho các Test Case KHÔNG hợp lệ mà không dùng màu nền đỏ */
         .invalid-transition {
             font-weight: bold;
             color: #000000;
         }
+
         .badge {
             display: inline-block;
             padding: 3px 8px;
@@ -71,16 +83,19 @@
             font-weight: bold;
             text-transform: uppercase;
         }
+
         .badge-valid {
             background-color: #e2f0d9;
             color: #385723;
             border: 1px solid #c8e1b9;
         }
+
         .badge-invalid {
             background-color: #eaeaea;
             color: #595959;
             border: 1px solid #d9d9d9;
         }
+
         .status-tag {
             background: #f1f2f6;
             padding: 2px 6px;
@@ -91,101 +106,105 @@
         }
     </style>
 </head>
+
 <body>
 
-<div class="container">
-    <h2>BẢNG ĐẶC TẢ KỊCH BẢN KIỂM THỬ CHUYỂN ĐỔI TRẠNG THÁI (MẪU CHUẨN)</h2>
-    
-    <div class="requirement-box">
-        <strong>Thông tin kịch bản:</strong>
-        <ul>
-            <li>Thiết kế đủ 8 test case theo yêu cầu phủ mọi chuyển tiếp (All-transitions coverage).</li>
-            <li>Các trường hợp chuyển tiếp <strong>Không hợp lệ</strong> đã được loại bỏ màu đỏ và chỉ áp dụng thuộc tính <strong>tô đậm chữ (font-weight: bold)</strong> trực quan, sạch sẽ.</li>
-        </ul>
+    <div class="container">
+        <h2>BẢNG ĐẶC TẢ KỊCH BẢN KIỂM THỬ CHUYỂN ĐỔI TRẠNG THÁI (MẪU CHUẨN)</h2>
+
+        <div class="requirement-box">
+            <strong>Thông tin kịch bản:</strong>
+            <ul>
+                <li>Thiết kế đủ 8 test case theo yêu cầu phủ mọi chuyển tiếp (All-transitions coverage).</li>
+            </ul>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th style="width: 8%;">ID</th>
+                    <th style="width: 15%;">Trạng thái đầu</th>
+                    <th style="width: 25%;">Chuỗi Event (Sự kiện)</th>
+                    <th style="width: 15%;">Trạng thái cuối</th>
+                    <th style="width: 25%;">Kết quả mong đợi</th>
+                    <th style="width: 12%;">Loại kịch bản</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Các chuyển tiếp HỢP LỆ -->
+                <tr>
+                    <td>TC-01</td>
+                    <td><span class="status-tag">S1 (Logged out)</span></td>
+                    <td>đúng</td>
+                    <td><span class="status-tag">S5 (Logged in)</span></td>
+                    <td>Hệ thống cho phép đăng nhập thành công, chuyển thẳng vào màn hình chính.</td>
+                    <td><span class="badge badge-valid">Hợp lệ</span></td>
+                </tr>
+                <tr>
+                    <td>TC-02</td>
+                    <td><span class="status-tag">S1 (Logged out)</span></td>
+                    <td>sai &rarr; đúng</td>
+                    <td><span class="status-tag">S5 (Logged in)</span></td>
+                    <td>Nhập sai lần 1 (qua S2), nhập đúng lần 2 &rarr; Đăng nhập thành công và reset bộ đếm lỗi.</td>
+                    <td><span class="badge badge-valid">Hợp lệ</span></td>
+                </tr>
+                <tr>
+                    <td>TC-03</td>
+                    <td><span class="status-tag">S1 (Logged out)</span></td>
+                    <td>sai &rarr; sai &rarr; đúng</td>
+                    <td><span class="status-tag">S5 (Logged in)</span></td>
+                    <td>Nhập sai lần 1 (S2), sai lần 2 (S3), đúng lần 3 &rarr; Đăng nhập thành công.</td>
+                    <td><span class="badge badge-valid">Hợp lệ</span></td>
+                </tr>
+                <tr>
+                    <td>TC-04</td>
+                    <td><span class="status-tag">S1 (Logged out)</span></td>
+                    <td>sai &rarr; sai &rarr; sai</td>
+                    <td><span class="status-tag">S4 (Locked)</span></td>
+                    <td>Nhập sai liên tiếp 3 lần &rarr; Hệ thống tự động khóa tài khoản.</td>
+                    <td><span class="badge badge-valid">Hợp lệ</span></td>
+                </tr>
+                <tr>
+                    <td>TC-05</td>
+                    <td><span class="status-tag">S5 (Logged in)</span></td>
+                    <td>đúng</td>
+                    <td><span class="status-tag">S5 (Logged in)</span></td>
+                    <td>Hệ thống giữ nguyên trạng thái đăng nhập khi người dùng thao tác đúng.</td>
+                    <td><span class="badge badge-valid">Hợp lệ</span></td>
+                </tr>
+
+                <!-- Các chuyển tiếp KHÔNG HỢP LỆ (Chỉ TÔ ĐẬM theo yêu cầu cập nhật mới) -->
+                <tr class="invalid-transition">
+                    <td>TC-06</td>
+                    <td>S1 (Logged out)</td>
+                    <td>đúng &rarr; sai</td>
+                    <td>S5 (Logged in)</td>
+                    <td>Hệ thống đã ở S5. Sự kiện "sai" không thể kích hoạt hành vi lỗi của S1. Hệ thống giữ nguyên S5.
+                    </td>
+                    <td><span class="badge badge-invalid">Không hợp lệ</span></td>
+                </tr>
+                <tr class="invalid-transition">
+                    <td>TC-07</td>
+                    <td>S2 (1 lần sai)</td>
+                    <td>sai &rarr; sai</td>
+                    <td>S4 (Locked)</td>
+                    <td>Chuyển trực tiếp từ S2 sang S4 mà không qua S3 là sai quy trình. Hệ thống phải chặn hành vi này.
+                    </td>
+                    <td><span class="badge badge-invalid">Không hợp lệ</span></td>
+                </tr>
+                <tr class="invalid-transition">
+                    <td>TC-08</td>
+                    <td>S4 (Locked)</td>
+                    <td>đúng</td>
+                    <td>S4 (Locked)</td>
+                    <td>Tài khoản đang bị khóa. Mọi sự kiện nhập "đúng" tiếp theo đều không được kích hoạt, hệ thống giữ
+                        nguyên trạng thái khóa.</td>
+                    <td><span class="badge badge-invalid">Không hợp lệ</span></td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 
-    <table>
-        <thead>
-            <tr>
-                <th style="width: 8%;">ID</th>
-                <th style="width: 15%;">Trạng thái đầu</th>
-                <th style="width: 25%;">Chuỗi Event (Sự kiện)</th>
-                <th style="width: 15%;">Trạng thái cuối</th>
-                <th style="width: 25%;">Kết quả mong đợi</th>
-                <th style="width: 12%;">Loại kịch bản</th>
-            </tr>
-        </thead>
-        <tbody>
-            <!-- Các chuyển tiếp HỢP LỆ -->
-            <tr>
-                <td>TC-01</td>
-                <td><span class="status-tag">S1 (Logged out)</span></td>
-                <td>đúng</td>
-                <td><span class="status-tag">S5 (Logged in)</span></td>
-                <td>Hệ thống cho phép đăng nhập thành công, chuyển thẳng vào màn hình chính.</td>
-                <td><span class="badge badge-valid">Hợp lệ</span></td>
-            </tr>
-            <tr>
-                <td>TC-02</td>
-                <td><span class="status-tag">S1 (Logged out)</span></td>
-                <td>sai &rarr; đúng</td>
-                <td><span class="status-tag">S5 (Logged in)</span></td>
-                <td>Nhập sai lần 1 (qua S2), nhập đúng lần 2 &rarr; Đăng nhập thành công và reset bộ đếm lỗi.</td>
-                <td><span class="badge badge-valid">Hợp lệ</span></td>
-            </tr>
-            <tr>
-                <td>TC-03</td>
-                <td><span class="status-tag">S1 (Logged out)</span></td>
-                <td>sai &rarr; sai &rarr; đúng</td>
-                <td><span class="status-tag">S5 (Logged in)</span></td>
-                <td>Nhập sai lần 1 (S2), sai lần 2 (S3), đúng lần 3 &rarr; Đăng nhập thành công.</td>
-                <td><span class="badge badge-valid">Hợp lệ</span></td>
-            </tr>
-            <tr>
-                <td>TC-04</td>
-                <td><span class="status-tag">S1 (Logged out)</span></td>
-                <td>sai &rarr; sai &rarr; sai</td>
-                <td><span class="status-tag">S4 (Locked)</span></td>
-                <td>Nhập sai liên tiếp 3 lần &rarr; Hệ thống tự động khóa tài khoản.</td>
-                <td><span class="badge badge-valid">Hợp lệ</span></td>
-            </tr>
-            <tr>
-                <td>TC-05</td>
-                <td><span class="status-tag">S5 (Logged in)</span></td>
-                <td>đúng</td>
-                <td><span class="status-tag">S5 (Logged in)</span></td>
-                <td>Hệ thống giữ nguyên trạng thái đăng nhập khi người dùng thao tác đúng.</td>
-                <td><span class="badge badge-valid">Hợp lệ</span></td>
-            </tr>
-
-            <!-- Các chuyển tiếp KHÔNG HỢP LỆ (Chỉ TÔ ĐẬM theo yêu cầu cập nhật mới) -->
-            <tr class="invalid-transition">
-                <td>TC-06</td>
-                <td>S1 (Logged out)</td>
-                <td>đúng &rarr; sai</td>
-                <td>S5 (Logged in)</td>
-                <td>Hệ thống đã ở S5. Sự kiện "sai" không thể kích hoạt hành vi lỗi của S1. Hệ thống giữ nguyên S5.</td>
-                <td><span class="badge badge-invalid">Không hợp lệ</span></td>
-            </tr>
-            <tr class="invalid-transition">
-                <td>TC-07</td>
-                <td>S2 (1 lần sai)</td>
-                <td>sai &rarr; sai</td>
-                <td>S4 (Locked)</td>
-                <td>Chuyển trực tiếp từ S2 sang S4 mà không qua S3 là sai quy trình. Hệ thống phải chặn hành vi này.</td>
-                <td><span class="badge badge-invalid">Không hợp lệ</span></td>
-            </tr>
-            <tr class="invalid-transition">
-                <td>TC-08</td>
-                <td>S4 (Locked)</td>
-                <td>đúng</td>
-                <td>S4 (Locked)</td>
-                <td>Tài khoản đang bị khóa. Mọi sự kiện nhập "đúng" tiếp theo đều không được kích hoạt, hệ thống giữ nguyên trạng thái khóa.</td>
-                <td><span class="badge badge-invalid">Không hợp lệ</span></td>
-            </tr>
-        </tbody>
-    </table>
-</div>
-
 </body>
+
 </html>
